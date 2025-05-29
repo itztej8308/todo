@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "821709276935",
+    "project_id": "smart-to-do-e51ad",
+    "storage_bucket": "smart-to-do-e51ad.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:821709276935:android:2ce72a84aa9f74f35b27a2",
+        "android_client_info": {
+          "package_name": "com.example.smarttodo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXnUYG2rTETiYF3RnWdxZAbz7XaEjVNlY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
