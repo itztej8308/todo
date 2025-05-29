@@ -35,6 +35,7 @@ public class Signin extends AppCompatActivity {
     TextView registerintent;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +45,7 @@ public class Signin extends AppCompatActivity {
         passInp = findViewById(R.id.password);
         button = findViewById(R.id.signin);
         registerintent = findViewById(R.id.registernow);
+
 
         registerintent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,9 +94,9 @@ public class Signin extends AppCompatActivity {
     private void updateUI(FirebaseUser user) {
         if (user != null) {
             Toast.makeText(Signin.this, "Welcome " + user.getEmail(), Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(Signin.this , Homepage.class);
+            Intent intent = new Intent(Signin.this, Homepage.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
-            finish();
         } else {
             Toast.makeText(Signin.this, "Login failed. Please try again.", Toast.LENGTH_SHORT).show();
         }

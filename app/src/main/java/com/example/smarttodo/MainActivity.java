@@ -3,6 +3,8 @@ package com.example.smarttodo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,5 +28,8 @@ public class MainActivity extends AppCompatActivity {
               finish();
           }
       },3000);
+
     }
+
+
 }
