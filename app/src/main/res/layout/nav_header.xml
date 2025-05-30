@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="#CAB3B3"
+    android:paddingTop="70dp"
+    android:layout_height="match_parent">
+    
+    <ImageView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:id="@+id/profile_image"
+        android:src="@drawable/profile"
+        android:layout_marginLeft="150sp"
+        android:background="@drawable/background_profile"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/name"
+        android:layout_marginLeft="100dp"
+        android:text="Tejas jaybhaye"
+        android:textSize="25sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/email"
+        android:layout_marginLeft="80dp"
+        android:text="abc123@gmail.com"
+        android:layout_marginTop="10dp"
+        android:textSize="25sp"/>
+
+
+
+
+</LinearLayout>
