@@ -24,6 +24,7 @@ public class Homepage extends AppCompatActivity {
 
     Toolbar toolbar;
 
+    ImageView logoutbtn;
     private DrawerLayout drawerLayout;
     private ImageView menuIcon;
     @Override
@@ -34,6 +35,20 @@ public class Homepage extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.drawer_layout);
         menuIcon = findViewById(R.id.menuIcon);
+        logoutbtn = findViewById(R.id.logoutbtn);
+
+
+
+        logoutbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Homepage.this, Signin.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
 
         menuIcon.setOnClickListener(new View.OnClickListener() {
             @Override
