@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,54 +18,22 @@ import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Homepage extends AppCompatActivity {
 
-    Toolbar toolbar;
+    BottomNavigationView bottomNavigationView ;
 
-    ImageView logoutbtn;
-    private DrawerLayout drawerLayout;
-    private ImageView menuIcon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_homepage);
 
-        drawerLayout = findViewById(R.id.drawer_layout);
-        menuIcon = findViewById(R.id.menuIcon);
-        logoutbtn = findViewById(R.id.logoutbtn);
-
-
-
-        logoutbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Homepage.this, Signin.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-
-
-        menuIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawerLayout.openDrawer(GravityCompat.START);
-            }
-        });
-
     }
 
-    @Override
-    public  void onBackPressed(){
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }else {
-            super.onBackPressed();
-        }
-    }
+
 }
