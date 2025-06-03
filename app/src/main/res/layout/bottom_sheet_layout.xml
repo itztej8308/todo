@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/background_appsheet"
+    android:padding="16dp">
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/textviewadd"
+       android:orientation="horizontal">
+       <TextView
+           android:text="Add New Item"
+           android:textSize="20sp"
+           android:textStyle="bold"
+           android:textColor="#B00020"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"/>
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Date:"
+           android:textSize="15dp"
+           android:layout_marginStart="130dp"/>
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textSize="15dp"
+           android:layout_marginLeft="5dp"
+           android:id="@+id/datepicker"/>
+   </LinearLayout>
+    <LinearLayout
+      android:layout_width="wrap_content"
+        android:layout_below="@+id/textviewadd"
+      android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:id="@+id/linearlayoutentertext"
+      android:orientation="horizontal">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="350dp"
+            android:layout_height="match_parent"
+            android:id="@+id/addtext"
+            android:textColor="#9E9E9E"
+            android:background="@drawable/savetask_btn"
+            android:layout_below="@id/textviewadd"
+            android:hint="Enter item name" />
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/calendersheet"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/calendar"/>
+  </LinearLayout>
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_marginTop="25dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/save"
+        android:layout_below="@id/linearlayoutentertext"
+
+        android:layout_centerHorizontal="true"
+        android:text="Save" />
+</RelativeLayout>

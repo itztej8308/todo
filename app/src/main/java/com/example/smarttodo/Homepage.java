@@ -1,16 +1,24 @@
 package com.example.smarttodo;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class Homepage extends AppCompatActivity {
 
    BottomNavigationView bottomNavigationView;
+   FloatingActionButton floatingActionButton;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +27,19 @@ public class Homepage extends AppCompatActivity {
         setContentView(R.layout.activity_homepage);
 
 
+
+        floatingActionButton = findViewById(R.id.fab);
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View view = LayoutInflater.from(Homepage.this).inflate(R.layout.bottom_sheet_layout,null);
+
+                BottomSheetDialog bottomSheetDialog =new BottomSheetDialog(Homepage.this);
+                bottomSheetDialog.setContentView(view);
+                bottomSheetDialog.show();
+            }
+        });
 
 
          setCurrentFragment(new HomeTodo());
@@ -33,10 +54,14 @@ public class Homepage extends AppCompatActivity {
 
             } else if (id == R.id.nav_setting) {
                 setCurrentFragment(new Setting());
+            }else if(id == R.id.nav_home){
+                setCurrentFragment(new HomeTodo());
             }
 
             return true;
         });
+
+
 
 }
     private void setCurrentFragment(Fragment fragment) {
@@ -45,4 +70,6 @@ public class Homepage extends AppCompatActivity {
                 .replace(R.id.fragment_container, fragment)
                 .commit();
     }
+
+
 }
