@@ -48,7 +48,6 @@ public class Homepage extends AppCompatActivity {
 
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
-            boolean selectfrag ;
             if (id == R.id.nav_calender){
                 setCurrentFragment(new Calender());
 

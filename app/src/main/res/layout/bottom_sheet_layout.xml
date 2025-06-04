@@ -48,18 +48,27 @@
             android:background="@drawable/savetask_btn"
             android:layout_below="@id/textviewadd"
             android:hint="Enter item name" />
+
         <ImageView
-            android:layout_width="20dp"
+            android:id="@+id/calendersheet"
+            android:layout_width="17dp"
             android:layout_height="20dp"
             android:layout_marginLeft="5dp"
-            android:id="@+id/calendersheet"
             android:layout_marginTop="12dp"
-            android:src="@drawable/calendar"/>
+            android:src="@drawable/calendar" />
   </LinearLayout>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textviewadd"
+        android:id="@+id/spinner"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="90dp" />
 
     <Button
         android:layout_width="100dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="45dp"
         android:layout_height="wrap_content"
         android:id="@+id/save"
         android:layout_below="@id/linearlayoutentertext"
