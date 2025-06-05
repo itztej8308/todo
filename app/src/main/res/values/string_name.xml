@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="task">
+        <item>Todays Task</item>
+        <item>Weekly Task</item>
+    </string-array>
+</resources>

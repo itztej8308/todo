@@ -1,5 +1,6 @@
 package com.example.smarttodo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,19 +29,16 @@ public class Homepage extends AppCompatActivity {
 
 
 
+
         floatingActionButton = findViewById(R.id.fab);
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                View view = LayoutInflater.from(Homepage.this).inflate(R.layout.bottom_sheet_layout,null);
+                setCurrentFragment(new add());
 
-                BottomSheetDialog bottomSheetDialog =new BottomSheetDialog(Homepage.this);
-                bottomSheetDialog.setContentView(view);
-                bottomSheetDialog.show();
             }
         });
-
 
          setCurrentFragment(new HomeTodo());
 
