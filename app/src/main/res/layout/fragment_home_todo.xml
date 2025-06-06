@@ -90,6 +90,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:orientation="vertical"
+                    android:id="@+id/todaystaskfrag"
                     android:layout_height="match_parent">
                     <TextView
                         android:layout_width="wrap_content"
@@ -139,6 +140,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:orientation="vertical"
+                    android:id="@+id/weeklytaskfrag"
                     android:layout_height="match_parent">
                     <TextView
                         android:layout_width="wrap_content"

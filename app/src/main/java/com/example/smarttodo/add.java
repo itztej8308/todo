@@ -9,28 +9,33 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class add extends Fragment {
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    private String mParam1;
-    private String mParam2;
 
     TextInputEditText textInputEditText;
     ImageView calenderview;
     TextView datepicker;
     Spinner spinner;
+    String selectedDate ="";
+
+    boolean taskAdded = false;
+    Button savebtn;
 
     public add() {
         // Required empty public constructor
@@ -53,6 +58,8 @@ public class add extends Fragment {
         datepicker = view.findViewById(R.id.datepicker);
         spinner = view.findViewById(R.id.spinner);
 
+        savebtn = view.findViewById(R.id.save);
+
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 requireContext(),
@@ -70,6 +77,7 @@ public class add extends Fragment {
                     (DatePicker view1, int year, int month, int day) -> {
                         String date = year + "-" + (month + 1) + "-" + day;
                         datepicker.setText(date);
+                        selectedDate = date;
                     },
                     cal.get(Calendar.YEAR),
                     cal.get(Calendar.MONTH),
@@ -78,6 +86,45 @@ public class add extends Fragment {
 
         });
 
-        return view; // ✅ Return only after initializing everything
+
+        savebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String task = textInputEditText.getText().toString();
+                String tasktype = spinner.getSelectedItem().toString();
+
+                if (task.isEmpty() || selectedDate.isEmpty()){
+                    Toast.makeText(requireContext(), "Enter Task and select Date ", Toast.LENGTH_SHORT).show();
+                }else {
+                    insertTaskToFirestore(task,tasktype,selectedDate);
+                }
+            }
+        });
+
+        return view;
+    }
+
+    private void insertTaskToFirestore(String task, String taskType, String date) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        Map<String, Object> taskData = new HashMap<>();
+        taskData.put("task", task);
+        taskData.put("taskType", taskType);
+        taskData.put("date", date);
+
+        db.collection("TaskAdd")
+                .add(taskData)
+                .addOnSuccessListener(docRef ->{
+                        Toast.makeText(requireContext(), "Task saved", Toast.LENGTH_SHORT).show();
+
+                 textInputEditText.setText("");
+                 spinner.setSelection(0);
+                 datepicker.setText("Select Date");
+                 selectedDate="";
+
+                })
+
+                .addOnFailureListener(e ->
+                        Toast.makeText(requireContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
 }

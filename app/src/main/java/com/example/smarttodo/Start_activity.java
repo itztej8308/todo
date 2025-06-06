@@ -17,34 +17,37 @@ import com.google.firebase.auth.FirebaseUser;
 public class Start_activity extends AppCompatActivity {
 
     Button btn;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_start);
-       btn = findViewById(R.id.startbtn);
-        FirebaseUser currentUser;
-        currentUser = FirebaseAuth.getInstance().getCurrentUser();
+    FirebaseUser currentUser;
 
-        if (currentUser!=null){
-            startActivity(new Intent(this, Homepage.class));
-        }else {
-            startActivity(new Intent(this, Signin.class));
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+
+            // Check if user is already logged in
+            FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+            if (currentUser != null) {
+                // User is logged in, go directly to Homepage
+                startActivity(new Intent(this, Homepage.class));
+                finish(); // finish this activity so it can't be returned to
+            } else {
+                // User not logged in, show start screen
+                setContentView(R.layout.activity_start);
+                EdgeToEdge.enable(this);
+
+                btn = findViewById(R.id.startbtn);
+
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Go to sign-in screen
+                        Intent intent = new Intent(Start_activity.this, Signin.class);
+                        startActivity(intent);
+                        finish(); // prevent back press from returning to this screen
+                    }
+                });
+            }
         }
-
-       btn.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               if (currentUser != null){
-               Intent i = new Intent(Start_activity.this , Homepage.class);
-               startActivity(i);
-               finish();
-               }else {
-                   Intent i = new Intent(Start_activity.this , Signin.class);
-                   startActivity(i);
-                   finish();
-               }
-           }
-       });
     }
-}
+
