@@ -3,6 +3,7 @@ package com.example.smarttodo;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 
+import androidx.appcompat.view.menu.MenuAdapter;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -31,11 +32,16 @@ public class add extends Fragment {
     TextInputEditText textInputEditText;
     ImageView calenderview;
     TextView datepicker;
+
+    private MenuViewModel viewModel;
+    private TodoAdapter todayAdapter;
+
     Spinner spinner;
     String selectedDate ="";
 
     boolean taskAdded = false;
     Button savebtn;
+
 
     public add() {
         // Required empty public constructor
@@ -100,7 +106,6 @@ public class add extends Fragment {
                 }
             }
         });
-
         return view;
     }
 
@@ -127,4 +132,9 @@ public class add extends Fragment {
                 .addOnFailureListener(e ->
                         Toast.makeText(requireContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
+
+
+
+
+
 }

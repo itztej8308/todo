@@ -48,7 +48,6 @@ public class Homepage extends AppCompatActivity {
             int id = item.getItemId();
             if (id == R.id.nav_calender){
                 setCurrentFragment(new Calender());
-
             } else if (id == R.id.nav_setting) {
                 setCurrentFragment(new Setting());
             }else if(id == R.id.nav_home){

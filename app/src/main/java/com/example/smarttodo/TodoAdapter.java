@@ -9,17 +9,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewholder> {
 
-    List<tododata> todolist;
+    private List<addDataModel> taskList = new ArrayList<>(); // ✅ Prevent null
 
-    public TodoAdapter(List<tododata>tododata){
-        this.todolist = tododata;
-
+    public void setData(List<addDataModel> tasks) {
+        if (tasks != null) {
+            this.taskList = tasks;
+        } else {
+            this.taskList = new ArrayList<>();
+        }
+        notifyDataSetChanged();
     }
-
     public static class TodoViewholder extends RecyclerView.ViewHolder{
 
         CheckBox checkBox;
@@ -47,14 +51,16 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewholder
     @Override
     public void onBindViewHolder(@NonNull TodoAdapter.TodoViewholder holder, int position) {
 
-        tododata item = todolist.get(position);
-        holder.checkBox.setChecked(item.isCheckbox());
+
+
+        addDataModel item = taskList.get(position);
+        holder.checkBox.setChecked(item.isComplete());
         holder.taskview.setText(item.getTask());
 
 
 
         holder.checkBox.setOnCheckedChangeListener(((buttonView, isChecked) -> {
-            item.setCheckbox(isChecked);
+            item.setComplete(isChecked);
         }));
 
 
@@ -62,6 +68,6 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewholder
 
     @Override
     public int getItemCount() {
-        return todolist.size();
+        return taskList != null ? taskList.size() : 0; // ✅ Safe null check
     }
 }

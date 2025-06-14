@@ -1,7 +1,11 @@
 package com.example.smarttodo;
 
 public class addDataModel {
-    private String task, Date,taskType;
+    private String task;
+    private String date;
+    private String taskType;
+    private boolean complete;
+
 
     public addDataModel(){
 
@@ -9,8 +13,9 @@ public class addDataModel {
 
     public addDataModel(String task, String date, String taskType) {
         this.task = task;
-        Date = date;
+        this.date = date;
         this.taskType = taskType;
+
     }
 
 
@@ -24,11 +29,19 @@ public class addDataModel {
     }
 
     public String getDate() {
-        return Date;
+        return date;
     }
 
     public void setDate(String date) {
-        Date = date;
+        this.date = date;
+    }
+
+    public boolean isComplete() {
+        return complete;
+    }
+
+    public void setComplete(boolean complete) {
+        this.complete = complete;
     }
 
     public String getTaskType() {

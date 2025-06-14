@@ -3,9 +3,11 @@ package com.example.smarttodo;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +26,9 @@ public class Today_task extends Fragment {
 
 
     RecyclerView recyclerView;
-    TodoAdapter todoAdapter;
-    List<tododata> tasklist;
+    TodoAdapter todayAdapter;
+    List<addDataModel> tasklist;
+    MenuViewModel menuViewModel;
 
 
 
@@ -47,21 +50,30 @@ public class Today_task extends Fragment {
 
         recyclerView = view.findViewById(R.id.recycleviewtoday);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        tasklist = new ArrayList<>();
+        todayAdapter = new TodoAdapter();
+        recyclerView.setAdapter(todayAdapter);
 
-        tasklist.add( new tododata("buy milk", false));
-        tasklist.add(new tododata("code to App", false));
+        // Setup ViewModel
+        menuViewModel = new     ViewModelProvider(this).get(MenuViewModel.class);
 
-
-        todoAdapter = new TodoAdapter(tasklist);
-        recyclerView.setAdapter(todoAdapter);
-
+        // Fetch today's tasks
+        observeTodayTasks();
 
 
 
 
         return view;
     }
+
+
+    private void observeTodayTasks() {
+        menuViewModel.getTasksByType("today").observe(getViewLifecycleOwner(), tasks -> {
+            Log.d("TODAY_TASK", "Tasks received: " + tasks.size());
+            todayAdapter.setData(tasks);
+        });
+
+    }
+
 
 
 
