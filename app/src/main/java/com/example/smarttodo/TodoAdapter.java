@@ -63,7 +63,6 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewholder
             item.setComplete(isChecked);
         }));
 
-
     }
 
     @Override

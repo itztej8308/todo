@@ -28,7 +28,6 @@ public class Today_task extends Fragment {
     RecyclerView recyclerView;
     TodoAdapter todayAdapter;
     List<addDataModel> tasklist;
-    MenuViewModel menuViewModel;
 
 
 
@@ -48,16 +47,9 @@ public class Today_task extends Fragment {
         View view = inflater.inflate(R.layout.fragment_today_task, container, false);
 
 
-        recyclerView = view.findViewById(R.id.recycleviewtoday);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        todayAdapter = new TodoAdapter();
-        recyclerView.setAdapter(todayAdapter);
 
-        // Setup ViewModel
-        menuViewModel = new     ViewModelProvider(this).get(MenuViewModel.class);
 
-        // Fetch today's tasks
-        observeTodayTasks();
+
 
 
 
@@ -66,15 +58,9 @@ public class Today_task extends Fragment {
     }
 
 
-    private void observeTodayTasks() {
-        menuViewModel.getTasksByType("today").observe(getViewLifecycleOwner(), tasks -> {
-            Log.d("TODAY_TASK", "Tasks received: " + tasks.size());
-            todayAdapter.setData(tasks);
-        });
 
     }
 
 
 
 
-}
